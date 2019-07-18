@@ -5,7 +5,7 @@ module.exports = function(app){
 
     // Creacion del cliente LDAP 
     var client = ldap.createClient({
-        url: 'ldap://35.247.250.23:8085/',
+        url: 'ldap://35.247.250.23:389/',
         version: 3
     });
 
