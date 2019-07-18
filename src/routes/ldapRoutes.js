@@ -5,7 +5,7 @@ module.exports = function(app){
 
     // Creacion del cliente LDAP 
     var client = ldap.createClient({
-        url: 'ldap://104.198.249.5:389',
+        url: 'ldap://35.247.250.23:8085/',
         version: 3
     });
 
@@ -41,7 +41,11 @@ module.exports = function(app){
         });
         
         var opts = { filter: '(objectclass=user)',scope: 'sub',attributes: ['objectGUID']};
-        
+        /*res.status(200).json({
+                    success: true,
+                    data: 'Usuario autenticado',
+                    token: token
+	});*/
         //client.bind(username, password , function (err) {        
         client.bind(email, password , function (err) {        
             if(err){
@@ -72,7 +76,11 @@ module.exports = function(app){
         const body = JSON.stringify(req.body)
         const token = jwt.sign({body},'secret_key');
         var opts = { filter: '(objectclass=user)',scope: 'sub',attributes: ['objectGUID']};
-        
+        /*res.status(200).json({
+                    success: true,
+                    data: 'Admin autenticado',
+                    token: token
+                })*/	
         client.bind(email, password , function (err) {        
             if(err){
                 res.status(200).json({
